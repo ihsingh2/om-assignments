@@ -133,6 +133,8 @@ def main():
         "DFP",
         "BFGS",
     ]
+    for field in table.field_names:
+        table.max_width[field] = 15
     dividers = [1, 5, 9, 13, 16, 18]
     for test_case_num, test_case in enumerate(test_cases):
         print(test_case_num)
