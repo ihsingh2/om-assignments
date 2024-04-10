@@ -32,10 +32,46 @@ test_cases = [
         np.asarray([-2.0, -2]),
     ],
     [
+        trid_function,
+        trid_function_derivative,
+        trid_function_hessian,
+        np.asarray([-2.0, -2]),
+    ],
+    [
+        three_hump_camel_function,
+        three_hump_camel_function_derivative,
+        three_hump_camel_function_hessian,
+        np.asarray([-2.0, 1]),
+    ],
+    [
+        three_hump_camel_function,
+        three_hump_camel_function_derivative,
+        three_hump_camel_function_hessian,
+        np.asarray([2.0, -1]),
+    ],
+    [
         three_hump_camel_function,
         three_hump_camel_function_derivative,
         three_hump_camel_function_hessian,
         np.asarray([-2.0, -1]),
+    ],
+    [
+        three_hump_camel_function,
+        three_hump_camel_function_derivative,
+        three_hump_camel_function_hessian,
+        np.asarray([2.0, 1]),
+    ],
+    [
+        rosenbrock_function,
+        rosenbrock_function_derivative,
+        rosenbrock_function_hessian,
+        np.asarray([2.0, 2, 2, -2]),
+    ],
+    [
+        rosenbrock_function,
+        rosenbrock_function_derivative,
+        rosenbrock_function_hessian,
+        np.asarray([2.0, -2, -2, 2]),
     ],
     [
         rosenbrock_function,
@@ -44,17 +80,53 @@ test_cases = [
         np.asarray([-2.0, 2, 2, 2]),
     ],
     [
+        rosenbrock_function,
+        rosenbrock_function_derivative,
+        rosenbrock_function_hessian,
+        np.asarray([3.0, 3, 3, 3]),
+    ],
+    [
+        styblinski_tang_function,
+        styblinski_tang_function_derivative,
+        styblinski_tang_function_hessian,
+        np.asarray([0.0, 0, 0, 0]),
+    ],
+    [
         styblinski_tang_function,
         styblinski_tang_function_derivative,
         styblinski_tang_function_hessian,
         np.asarray([3.0, 3, 3, 3]),
     ],
     [
+        styblinski_tang_function,
+        styblinski_tang_function_derivative,
+        styblinski_tang_function_hessian,
+        np.asarray([-3.0, -3, -3, -3]),
+    ],
+    [
+        styblinski_tang_function,
+        styblinski_tang_function_derivative,
+        styblinski_tang_function_hessian,
+        np.asarray([3.0, -3, 3, -3]),
+    ],
+    [
+        func_1,
+        func_1_derivative,
+        func_1_hessian,
+        np.asarray([3.0, 3]),
+    ],
+    [
         func_1,
         func_1_derivative,
         func_1_hessian,
         np.asarray([-0.5, 0.5]),
-    ]
+    ],
+    [
+        func_1,
+        func_1_derivative,
+        func_1_hessian,
+        np.asarray([-3.5, 0.5]),
+    ],
 ]
 
 
