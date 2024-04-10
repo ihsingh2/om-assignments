@@ -87,19 +87,19 @@ For the given test case, all the algorithms converged to the local minima $\text
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=.75\textwidth]{trid_function_vals.png}
+      \includegraphics[width=.65\textwidth]{trid_function_vals.png}
       \caption{$f(\textbf{x}_k)$ vs $k$, for $\textbf{x}_0 = (-2, -2)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{trid_function_grad.png}
+    \includegraphics[width=.65\textwidth]{trid_function_grad.png}
     \caption{$|\nabla f(\textbf{x}_k)|$ vs $k$, for $\textbf{x}_0 = (-2, -2)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{trid_function_cont.png}
+    \includegraphics[width=.65\textwidth]{trid_function_cont.png}
     \caption{Contour plot, with direction of updates for $\textbf{x}_0 = (-2, -2)$}
 \end{figure}
 
@@ -154,19 +154,19 @@ For the given test cases, all the algorithms converged to one of the local minim
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=.75\textwidth]{three_hump_camel_function_vals.png}
+      \includegraphics[width=.65\textwidth]{three_hump_camel_function_vals.png}
       \caption{$f(\textbf{x}_k)$ vs $k$, for $\textbf{x}_0 = (-2, -1)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{three_hump_camel_function_grad.png}
+    \includegraphics[width=.65\textwidth]{three_hump_camel_function_grad.png}
     \caption{$|\nabla f(\textbf{x}_k)|$ vs $k$, for $\textbf{x}_0 = (-2, -1)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{three_hump_camel_function_cont.png}
+    \includegraphics[width=.65\textwidth]{three_hump_camel_function_cont.png}
     \caption{Contour plot, with direction of updates for $\textbf{x}_0 = (-2, -1)$}
 \end{figure}
 
@@ -228,13 +228,13 @@ Combining \eqref{sty-sosc-1} and \eqref{sty-sosc-2}, we get $x_i = -2.9035, 2.74
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=.75\textwidth]{styblinski_tang_function_vals.png}
+      \includegraphics[width=.65\textwidth]{styblinski_tang_function_vals.png}
       \caption{$f(\textbf{x}_k)$ vs $k$, for $\textbf{x}_0 = (3, 3, 3, 3)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{styblinski_tang_function_grad.png}
+    \includegraphics[width=.65\textwidth]{styblinski_tang_function_grad.png}
     \caption{$|\nabla f(\textbf{x}_k)|$ vs $k$, for $\textbf{x}_0 = (3, 3, 3, 3)$}
 \end{figure}
 
@@ -272,13 +272,9 @@ $$f(\textbf{x}) = \sum_{i=1}^{d-1} [ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 ]$$
 
 \begin{enumerate}
 
-\item Steepest Descent with Bisection search converged, for all except the first test case.
+\item Pure Newton's Method, Damped Newton's Method, Levenberg-Marquardt Modification and Combined Damped Netwon's Method converged, for all except the third test case.
 
-\item Pure Newton's Method, Damped Newton's Method and Levenberg-Marquardt Modification converged, for all except the third test case.
-
-\item Combined Damped Netwon's Method converged only for the first and fourth test case.
-
-\item Steepest Descent with Backtracking converged for all the test cases.
+\item Steepest Descent with Backtracking and Bisection search converged for all the test cases.
 
 \end{enumerate}
 
@@ -286,13 +282,13 @@ $$f(\textbf{x}) = \sum_{i=1}^{d-1} [ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 ]$$
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=.75\textwidth]{rosenbrock_function_vals.png}
+      \includegraphics[width=.65\textwidth]{rosenbrock_function_vals.png}
       \caption{$f(\textbf{x}_k)$ vs $k$, for $\textbf{x}_0 = (-2, 2, 2, 2)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{rosenbrock_function_grad.png}
+    \includegraphics[width=.65\textwidth]{rosenbrock_function_grad.png}
     \caption{$|\nabla f(\textbf{x}_k)|$ vs $k$, for $\textbf{x}_0 = (-2, 2, 2, 2)$}
 \end{figure}
 
@@ -350,19 +346,19 @@ Since \eqref{rootsq-sosc-2} always hold, from \eqref{rootsq-sosc-1} we get $x_i 
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=.75\textwidth]{func_1_vals.png}
+      \includegraphics[width=.65\textwidth]{func_1_vals.png}
       \caption{$f(\textbf{x}_k)$ vs $k$, for $\textbf{x}_0 = (-0.5, 0.5)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{func_1_grad.png}
+    \includegraphics[width=.65\textwidth]{func_1_grad.png}
     \caption{$|\nabla f(\textbf{x}_k)|$ vs $k$, for $\textbf{x}_0 = (-0.5, 0.5)$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{func_1_cont.png}
+    \includegraphics[width=.65\textwidth]{func_1_cont.png}
     \caption{Contour plot, with direction of updates for $\textbf{x}_0 = (-0.5, 0.5)$}
 \end{figure}
 
@@ -380,13 +376,13 @@ Since \eqref{rootsq-sosc-2} always hold, from \eqref{rootsq-sosc-1} we get $x_i 
         4 & & (-2, -1) & (0, 0) & (1.748, -0.874) & (-1.748, 0.874) & (-1.748, 0.874) & (-1.748, 0.874) & (-1.748, 0.874) \\
         5 & & (2, 1) & (0, 0) & (-1.748, 0.874) & (1.748, -0.874) & (1.748, -0.874) & (1.748, -0.874) & (1.748, -0.874) \\
         \hline
-        6 & \multirow{4}{*}{Rosenbrock} & (2, 2, 2, -2) & (1, 1, 1, 1) & (-0.776, 0.613, 0.382, 0.146) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) \\
-        7 & & (2, -2, -2, 2) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (-0.776, 0.613, 0.382, 0.146) \\
+        6 & \multirow{4}{*}{Rosenbrock} & (2, 2, 2, -2) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) \\
+        7 & & (2, -2, -2, 2) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) \\
         8 & & (-2, 2, 2, 2) & (1, 1, 1, 1) & (1, 1, 1, 1) & (-0.776, 0.613, 0.382, 0.146) & (-0.776, 0.613, 0.382, 0.146) & (-0.776, 0.613, 0.382, 0.146) & (-0.776, 0.613, 0.382, 0.146) \\
         9 & & (3, 3, 3, 3) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) & (1, 1, 1, 1) \\
         \hline
         10 & \multirow{4}{*}{Styblinski-Tang} & (0, 0, 0, 0) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (0.157, 0.157, 0.157, 0.157) & (0, 0, 0, 0) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) \\
-        11 & & (3, 3, 3, 3) & (-2.904, -2.904, -2.904, -2.904) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) \\
+        11 & & (3, 3, 3, 3) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) & (2.747, 2.747, 2.747, 2.747) \\
         12 & & (-3, -3, -3, -3) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) & (-2.904, -2.904, -2.904, -2.904) \\
         13 & & (3, -3, 3, -3) & (2.747, -2.904, 2.747, -2.904) & (2.747, -2.904, 2.747, -2.904) & (2.747, -2.904, 2.747, -2.904) & (2.747, -2.904, 2.747, -2.904) & (2.747, -2.904, 2.747, -2.904) & (2.747, -2.904, 2.747, -2.904) \\
         \hline
