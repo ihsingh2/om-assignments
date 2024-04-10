@@ -39,8 +39,22 @@ def descent(
     d_f: Callable[[NDArray[np.float64]], NDArray[np.float64]],
 ) -> NDArray[np.float64]:
 
-    approach = ["Hestenes-Stiefel", "Polak-Ribiere", "Fletcher-Reeves", "SR1", "DFP", "BFGS"]
-    functions = [hestenes_stiefel, polak_ribiere, fletcher_reeves, sr1, dfp, bfgs]
+    approach = [
+        "Hestenes-Stiefel",
+        "Polak-Ribiere",
+        "Fletcher-Reeves",
+        "SR1",
+        "DFP",
+        "BFGS"
+    ]
+    functions = [
+        hestenes_stiefel,
+        polak_ribiere,
+        fletcher_reeves,
+        sr1,
+        dfp,
+        bfgs
+    ]
 
     f_X_i = [ ]
     d_f_X_i = [ ]
@@ -321,8 +335,7 @@ def plot_graphs(f, initial_point, approach, f_X_i, d_f_X_i, X_0_i, X_1_i):
     colors = ['b', 'g', 'r', 'c', 'm', 'y']
 
     for i, cond in enumerate(approach):
-        if len(f_X_i[i]) < 10000:
-            plt.plot(range(len(f_X_i[i])), f_X_i[i], label=cond, color=colors[i])
+        plt.plot(range(len(f_X_i[i])), f_X_i[i], label=cond, color=colors[i])
     plt.xlabel("Iteration, k")
     plt.ylabel("Function value, f(x_k)")
     plt.grid(True)
@@ -331,8 +344,7 @@ def plot_graphs(f, initial_point, approach, f_X_i, d_f_X_i, X_0_i, X_1_i):
     plt.close()
 
     for i, cond in enumerate(approach):
-        if len(d_f_X_i[i]) < 10000:
-            plt.plot(range(len(d_f_X_i[i])), d_f_X_i[i], label=cond, color=colors[i])
+        plt.plot(range(len(d_f_X_i[i])), d_f_X_i[i], label=cond, color=colors[i])
     plt.xlabel("Iteration, k")
     plt.ylabel("Gradient value, |f'(x_k)|")
     plt.grid(True)
