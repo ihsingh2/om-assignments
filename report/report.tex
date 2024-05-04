@@ -424,22 +424,22 @@ $$f(\textbf{x}) = \sum_{i=1}^d \sum_{j=1}^i x_j^2$$
 \begin{align*}
 \nabla f(\textbf{x}) &=
     \begin{bmatrix}
-        d x_1^2 \\
-        (d - 1) x_2^2 \\
-        (d - 2) x_3^2 \\
+        2d x_1 \\
+        2(d - 1) x_2 \\
+        2(d - 2) x_3 \\
         \vdots \\
-        x_d^2
+        2 x_d
     \end{bmatrix}
 \end{align*}
 
 \begin{align*}
 \nabla^2 f(\textbf{x}) &=
     \begin{bmatrix}
-        2dx_1 & 0 & 0 & \dots & 0 \\
-        0 & 2(d - 1)x_2 & 0 & \dots & 0 \\
-        0 & 0 & 2(d - 2)x_3 & \dots & 0 \\
+        2d & 0 & 0 & \dots & 0 \\
+        0 & 2(d - 1) & 0 & \dots & 0 \\
+        0 & 0 & 2(d - 2) & \dots & 0 \\
         \vdots & \vdots & \vdots & \ddots & \\
-        0 & 0 & 0 & & 2x_d \\
+        0 & 0 & 0 & & 2 \\
     \end{bmatrix}
 \end{align*}
 
@@ -448,12 +448,12 @@ $$f(\textbf{x}) = \sum_{i=1}^d \sum_{j=1}^i x_j^2$$
 We know from the SONC for minima that if $\textbf{x}^*$ is a local minima of the function $f(\textbf{x})$, the following conditions hold.
 \begin{align*}
 &\nabla f(\textbf{x}^*) = \textbf{0} \\
-&\implies (d - i + 1) x_i^2 = 0 &&\forall i \in [1, d] \\
+&\implies 2 (d - i + 1) x_i = 0 &&\forall i \in [1, d] \\
 &\implies x_i = 0 &&\forall i \in [1, d] \numberthis \label{rhe-sosc-1} \\ \\
-&\textbf{y}^T \nabla^2 f(\textbf{x}^*) \textbf{y} \geq 0 &&\forall \textbf{y} \in \mathbb{R}^2 \numberthis \label{rhe-sosc-2}
+&\textbf{y}^T \nabla^2 f(\textbf{x}^*) \textbf{y} > 0 &&\forall \textbf{y} \in \mathbb{R}^2 \numberthis \label{rhe-sosc-2}
 \end{align*}
 
-Since $\nabla^2 f(\textbf{x}^*)$ is a diagonal matrix with non-negative diagonal entries, it is positive semi-definite, thus establishing \eqref{rhe-sosc-2}. To show that \eqref{rhe-sosc-1} is indeed a minima, notice that $f(\textbf{x})$ is bounded below from $y = 0$, with $f(\textbf{x}^*)$ precisely achieving this bound. Thus, we get the minima
+Since $\nabla^2 f(\textbf{x}^*)$ is a diagonal matrix with positive diagonal entries, it is positive definite, establishing \eqref{rhe-sosc-2}. Thus, we get the minima
 \begin{align*}
 \textbf{x}^* = \{0\}^d \numberthis \label{rhe-minima}
 \end{align*}
