@@ -1,0 +1,246 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{bookmark}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\allowdisplaybreaks
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\labeleqn}[1]{\numberthis \label{#1}}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parindent}{0pt}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{plainbox}[2][]{%
+  enhanced,colback=white,colframe=black,coltitle=black,
+  sharp corners,boxrule=0.4pt,
+  fonttitle=\itshape,
+  attach boxed title to top center={yshift=-0.4\baselineskip-0.4pt},
+  boxed title style={tile,size=minimal,left=0.5mm,right=0.5mm,
+    colback=white,before upper=\strut},
+  title=#2,#1
+}
+
+\title{CS1.404: Assignment 3}
+\author{Himanshu Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{plainbox}{KKT Condition}
+For the convex optimization problem,
+\begin{align*}
+\min_{\textbf{x} \in \mathbb{R}^n} f(\textbf{x}) \\
+\text{s.t. } h_j(\textbf{x}) \leq 0 && \forall j \in \{1, 2, \ldots, l\}
+\intertext{$\textbf{x}^*$ is an optimal solution, if there exists multipliers $\{\lambda_j\}_{j = 1}^l$, such that the following equations hold.}
+\nabla f(\textbf{x}^*) + \sum_{j = 1}^l \lambda_j \nabla h_j (\textbf{x}^*) = 0 \\
+\lambda_j h_j (\textbf{x}^*) = 0 && \forall j \in \{1, 2, \ldots, l\} \\
+\lambda_j \geq 0 && \forall j \in \{1, 2, \ldots, l\} \labeleqn{kkt}
+\end{align*}
+\end{plainbox}
+
+\section{Trid Function}
+
+$$f(\textbf{x}) = \sum_{i=1}^d (x_i - 1)^2 - \sum_{i=2}^d x_{i-1} x_i$$
+
+\begin{align*}
+\nabla f(\textbf{x}) &=
+    \begin{bmatrix}
+        2 x_1 - x_2 - 2 \\
+        2 x_2 - x_1 - x_3 - 2 \\
+        2 x_3 - x_2 - x_4 - 2 \\
+        \vdots \\
+        2 x_{d-1} - x_{d-2} - x_d - 2 \\
+        2 x_d - x_{d-1} - 2 \\
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Test Case 0}
+
+\begin{align*}
+h_1(\textbf{x}) &= x_1^2 - 2 x_2 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} 2 x_1 & -2 \end{bmatrix} ^T \\
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
+2 x_2 - x_1 - 2 - 2 \lambda_1 &= 0 \\
+\lambda_1 (x_1^2 - 2 x_2) &= 0
+\end{align*}
+
+\subsection{Test Case 1}
+
+\begin{align*}
+h_1(\textbf{x}) &= x_1^2 - x_2^2 + 1 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} 2 x_1 & -2 x_2 \end{bmatrix} ^T \\
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
+2 x_2 - x_1 - 2 - 2 \lambda_1 x_2 &= 0 \\
+\lambda_1 (x_1^2 - x_2^2 + 1) &= 0
+\end{align*}
+
+\subsection{Test Case 2}
+
+\begin{align*}
+h_1(\textbf{x}) &= -1 - x_1 \\
+h_2(\textbf{x}) &= x_1 - 1 \\
+h_3(\textbf{x}) &= -1 - x_2 \\
+h_4(\textbf{x}) &= x_2 - 1 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T \\
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+2 x_1 - x_2 - 2 - \lambda_1 + \lambda_2 &= 0 \\
+2 x_2 - x_1 - 2 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 (x_1 + 1) &= 0 \\
+\lambda_2 (x_1 - 1) &= 0 \\
+\lambda_3 (x_2 + 1) &= 0 \\
+\lambda_4 (x_2 - 1) &= 0
+\end{align*}
+
+\subsection{Test Case 3}
+
+\begin{align*}
+h_1(\textbf{x}) &= - x_1 \\
+h_2(\textbf{x}) &= x_1 - 3 \\
+h_3(\textbf{x}) &= - x_2 \\
+h_4(\textbf{x}) &= x_2 - 3 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T \\
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+2 x_1 - x_2 - 2 - \lambda_1 + \lambda_2 &= 0 \\
+2 x_2 - x_1 - 2 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 x_1 &= 0 \\
+\lambda_2 (x_1 - 3) &= 0 \\
+\lambda_3 x_2 &= 0 \\
+\lambda_4 (x_2 - 3) &= 0
+\end{align*}
+
+\subsection{Test Case 4}
+
+\begin{align*}
+h_1(\textbf{x}) &= 3 - x_1 \\
+h_2(\textbf{x}) &= x_1 - 4 \\
+h_3(\textbf{x}) &= 3 - x_2 \\
+h_4(\textbf{x}) &= x_2 - 4 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T \\
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+2 x_1 - x_2 - 2 - \lambda_1 + \lambda_2 &= 0 \\
+2 x_2 - x_1 - 2 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 (x_1 - 3) &= 0 \\
+\lambda_2 (x_1 - 4) &= 0 \\
+\lambda_3 (x_2 - 3) &= 0 \\
+\lambda_4 (x_2 - 4) &= 0
+\end{align*}
+
+\section{Matyas Function}
+
+$$f(\textbf{x}) = 0.26(x_1^2 + x_2^2) - 0.48 x_1 x_2$$
+
+\begin{align*}
+\nabla f(\textbf{x}) &=
+    \begin{bmatrix}
+        0.52 x_1 - 0.48 x_2 \\
+        0.52 x_2 - 0.48 x_1
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Test Case 5}
+
+\begin{align*}
+h_1(\textbf{x}) &= - x_1 \\
+h_2(\textbf{x}) &= x_1 - 1 \\
+h_3(\textbf{x}) &= - x_2 \\
+h_4(\textbf{x}) &= x_2 - 1 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+0.52 x_1 - 0.48 x_2 - \lambda_1 + \lambda_2 &= 0 \\
+0.52 x_2 - 0.48 x_1 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 x_1 &= 0 \\
+\lambda_2 (x_1 - 1) &= 0 \\
+\lambda_3 x_2 &= 0 \\
+\lambda_4 (x_2 - 1) &= 0
+\end{align*}
+
+\subsection{Test Case 6}
+
+\begin{align*}
+h_1(\textbf{x}) &= 1 - x_1 \\
+h_2(\textbf{x}) &= x_1 - 2 \\
+h_3(\textbf{x}) &= 1 - x_2 \\
+h_4(\textbf{x}) &= x_2 - 2 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+0.52 x_1 - 0.48 x_2 - \lambda_1 + \lambda_2 &= 0 \\
+0.52 x_2 - 0.48 x_1 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 (x_1 - 1) &= 0 \\
+\lambda_2 (x_1 - 2) &= 0 \\
+\lambda_3 (x_2 - 1) &= 0 \\
+\lambda_4 (x_2 - 2) &= 0
+\end{align*}
+
+\subsection{Test Case 7}
+
+\begin{align*}
+h_1(\textbf{x}) &= -1 - x_1 \\
+h_2(\textbf{x}) &= x_1 + 0.5 \\
+h_3(\textbf{x}) &= -0.5 - x_2 \\
+h_4(\textbf{x}) &= x_2 - 0.5 \\
+\nabla h_1(\textbf{x}) &= \begin{bmatrix} -1 & 0 \end{bmatrix} ^T \\
+\nabla h_2(\textbf{x}) &= \begin{bmatrix} 1 & 0 \end{bmatrix} ^T \\
+\nabla h_3(\textbf{x}) &= \begin{bmatrix} 0 & -1 \end{bmatrix} ^T \\
+\nabla h_4(\textbf{x}) &= \begin{bmatrix} 0 & 1 \end{bmatrix} ^T
+\end{align*}
+
+Substituting in \eqref{kkt}, we get
+\begin{align*}
+0.52 x_1 - 0.48 x_2 - \lambda_1 + \lambda_2 &= 0 \\
+0.52 x_2 - 0.48 x_1 - \lambda_3 + \lambda_4 &= 0 \\
+\lambda_1 (x_1 + 1) &= 0 \\
+\lambda_2 (x_1 + 0.5) &= 0 \\
+\lambda_3 (x_2 + 0.5) &= 0 \\
+\lambda_4 (x_2 - 0.5) &= 0
+\end{align*}
+
+\end{document}
