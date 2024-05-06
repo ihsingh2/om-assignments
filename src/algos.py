@@ -88,7 +88,7 @@ def dual_ascent(
             grad[idx] = c_idx(x_k)
         return grad
 
-    alpha = 1e-2
+    alpha = 5e-2
     zeros = np.zeros(len(c))
 
     x_k = initial_point

@@ -7,6 +7,7 @@
 \allowdisplaybreaks
 \newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\labeleqn}[1]{\numberthis \label{#1}}
+\newcommand{\case}[1]{\numberthis \vspace*{10px} \textit{Case #1} \hspace*{2.5px}}
 
 \usepackage{graphicx}
 \usepackage{float}
@@ -43,7 +44,7 @@ For the convex optimization problem,
 \min_{\textbf{x} \in \mathbb{R}^n} f(\textbf{x}) \\
 \text{s.t. } h_j(\textbf{x}) \leq 0 && \forall j \in \{1, 2, \ldots, l\}
 \intertext{$\textbf{x}^*$ is an optimal solution, if there exists multipliers $\{\lambda_j\}_{j = 1}^l$, such that the following equations hold.}
-\nabla f(\textbf{x}^*) + \sum_{j = 1}^l \lambda_j \nabla h_j (\textbf{x}^*) = 0 \\
+\nabla f(\textbf{x}^*) + \sum_{j = 1}^l \lambda_j \nabla h_j (\textbf{x}^*) = \textbf{0} \\
 \lambda_j h_j (\textbf{x}^*) = 0 && \forall j \in \{1, 2, \ldots, l\} \\
 \lambda_j \geq 0 && \forall j \in \{1, 2, \ldots, l\} \labeleqn{kkt}
 \end{align*}
@@ -76,8 +77,37 @@ Substituting in \eqref{kkt}, we get
 \begin{align*}
 2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
 2 x_2 - x_1 - 2 - 2 \lambda_1 &= 0 \\
-\lambda_1 (x_1^2 - 2 x_2) &= 0
+\lambda_1 (x_1^2 - 2 x_2) &= 0 \labeleqn{tc0}
 \end{align*}
+
+\case{1} When $\lambda_1 = 0$, the system \eqref{tc0} reduces to
+\begin{align*}
+2 x_1 - x_2 - 2 &= 0 \\
+2 x_2 - x_1 - 2 &= 0 \labeleqn{tc0-case1}
+\end{align*}
+Solving \eqref{tc0-case1}, we get $x_1 = x_2 = 2$.
+
+\case{2} When $\lambda_1 \neq 0$, the system \eqref{tc0} reduces to
+\begin{align*}
+2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
+2 x_2 - x_1 - 2 - 2 \lambda_1 &= 0 \\
+x_1^2 - 2 x_2 &= 0 \labeleqn{tc0-case2}
+\end{align*}
+
+Eliminating $x_2$ from \eqref{tc0-case2}, we get
+\begin{align*}
+2 x_1 - \frac{x_1^2}{2} - 2 + 2 \lambda_1 x_1 &= 0 \\
+x_1^2 - x_1 - 2 - 2 \lambda_1 &= 0 \labeleqn{tc0-case2-2}
+\end{align*}
+
+Eliminating $\lambda_1$ from \eqref{tc0-case2-2}, we get
+\begin{align*}
+x_1^3 - \frac{3x_1^2}{2} - 2 = 0 \labeleqn{tc0-case2-3}
+\end{align*}
+
+Solving \eqref{tc0-case2-3} we get $x_1 = 2$ as the only real solution. Substituting back in \eqref{tc0-case2-2}, we get $\lambda_1 = 0$, contradicting our assumption that $\lambda_1 \neq 0$.
+
+We thus conclude that $(\textbf{x}^*, \lambda^*) = \left( \begin{bmatrix} 2 & 2 \end{bmatrix} ^T, 0 \right)$ is the only real solution to \eqref{tc0}.
 
 \subsection{Test Case 1}
 
@@ -90,8 +120,37 @@ Substituting in \eqref{kkt}, we get
 \begin{align*}
 2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
 2 x_2 - x_1 - 2 - 2 \lambda_1 x_2 &= 0 \\
-\lambda_1 (x_1^2 - x_2^2 + 1) &= 0
+\lambda_1 (x_1^2 - x_2^2 + 1) &= 0 \labeleqn{tc1}
 \end{align*}
+
+\case{1} When $\lambda_1 = 0$, the system \eqref{tc1} reduces to
+\begin{align*}
+2 x_1 - x_2 - 2 &= 0 \\
+2 x_2 - x_1 - 2 &= 0 \labeleqn{tc1-case1}
+\end{align*}
+Solving \eqref{tc1-case1}, we get $x_1 = x_2 = 2$.
+
+\case{2} When $\lambda_1 \neq 0$, the system \eqref{tc1} reduces to
+\begin{align*}
+2 x_1 - x_2 - 2 + 2 \lambda_1 x_1 &= 0 \\
+2 x_2 - x_1 - 2 - 2 \lambda_1 x_2 &= 0 \\
+x_1^2 - x_2^2 + 1 &= 0 \labeleqn{tc1-case2}
+\end{align*}
+
+Eliminating $x_2$ from \eqref{tc1-case2}, we get
+\begin{align*}
+2 x_1 \mp \sqrt{x_1^2 + 1} - 2 + 2 \lambda_1 x_1 &= 0 \\
+\pm 2 \sqrt{x_1^2 + 1} - x_1 - 2 \mp 2 \lambda_1 \sqrt{x_1^2 + 1} &= 0 \labeleqn{tc1-case2-2}
+\end{align*}
+
+Eliminating $\lambda_1$ from \eqref{tc1-case2-2}, we get
+\begin{align*}
+\mp \frac{x_1^2 + 2x_1}{\sqrt{x_1^2 + 1}} + 4x_1 \mp \sqrt{x_1^2 + 1} - 2 &= 0 \labeleqn{tc1-case2-3}
+\end{align*}
+
+Solving \eqref{tc1-case2-3} we get $x_1 = \{1.8991, 0.16094\}$ as the real solutions. Substituting back in \eqref{tc1-case2-2}, we get $\lambda_1 = \{0.90167, 2.06674\}$ respectively. Substituting back in \eqref{tc1-case2}, we get $x_2 = \{2.14629, -1.01287\}$ respectively.
+
+We thus conclude that $(\textbf{x}^*, \lambda^*) = \left\{ \left( \begin{bmatrix} 2 & 2 \end{bmatrix} ^T, 0 \right), \left( \begin{bmatrix} 1.8991 & 2.14629 \end{bmatrix} ^T, 0.09167 \right), \left( \begin{bmatrix} 0.16094 & -1.01287 \end{bmatrix} ^T, 2.06674 \right) \right\}$ as the real solutions to \eqref{tc1}.
 
 \subsection{Test Case 2}
 
@@ -113,8 +172,10 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 (x_1 + 1) &= 0 \\
 \lambda_2 (x_1 - 1) &= 0 \\
 \lambda_3 (x_2 + 1) &= 0 \\
-\lambda_4 (x_2 - 1) &= 0
+\lambda_4 (x_2 - 1) &= 0 \labeleqn{tc2}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} 1 & 1 \end{bmatrix} ^T$, the system \eqref{tc2} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} ^T$.
 
 \subsection{Test Case 3}
 
@@ -136,8 +197,10 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 x_1 &= 0 \\
 \lambda_2 (x_1 - 3) &= 0 \\
 \lambda_3 x_2 &= 0 \\
-\lambda_4 (x_2 - 3) &= 0
+\lambda_4 (x_2 - 3) &= 0 \labeleqn{tc3}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} 2 & 2 \end{bmatrix} ^T$, the system \eqref{tc3} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 0 & 0 & 0 & 0 \end{bmatrix} ^T$.
 
 \subsection{Test Case 4}
 
@@ -159,8 +222,10 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 (x_1 - 3) &= 0 \\
 \lambda_2 (x_1 - 4) &= 0 \\
 \lambda_3 (x_2 - 3) &= 0 \\
-\lambda_4 (x_2 - 4) &= 0
+\lambda_4 (x_2 - 4) &= 0 \labeleqn{tc4}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} 3 & 3 \end{bmatrix} ^T$, the system \eqref{tc4} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 1 & 0 & 1 & 0 \end{bmatrix} ^T$.
 
 \section{Matyas Function}
 
@@ -194,8 +259,10 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 x_1 &= 0 \\
 \lambda_2 (x_1 - 1) &= 0 \\
 \lambda_3 x_2 &= 0 \\
-\lambda_4 (x_2 - 1) &= 0
+\lambda_4 (x_2 - 1) &= 0 \labeleqn{tc5}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} 0 & 0 \end{bmatrix} ^T$, the system \eqref{tc5} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 0 & 0 & 0 & 0 \end{bmatrix} ^T$.
 
 \subsection{Test Case 6}
 
@@ -217,8 +284,10 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 (x_1 - 1) &= 0 \\
 \lambda_2 (x_1 - 2) &= 0 \\
 \lambda_3 (x_2 - 1) &= 0 \\
-\lambda_4 (x_2 - 2) &= 0
+\lambda_4 (x_2 - 2) &= 0 \labeleqn{tc6}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} 1 & 1 \end{bmatrix} ^T$, the system \eqref{tc6} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 0.04 & 0 & 0.04 & 0 \end{bmatrix} ^T$.
 
 \subsection{Test Case 7}
 
@@ -240,7 +309,9 @@ Substituting in \eqref{kkt}, we get
 \lambda_1 (x_1 + 1) &= 0 \\
 \lambda_2 (x_1 + 0.5) &= 0 \\
 \lambda_3 (x_2 + 0.5) &= 0 \\
-\lambda_4 (x_2 - 0.5) &= 0
+\lambda_4 (x_2 - 0.5) &= 0 \labeleqn{tc7}
 \end{align*}
+
+We observe that when $\textbf{x} = \begin{bmatrix} -0.5 & -0.4615 \end{bmatrix} ^T$, the system \eqref{tc7} is satisifed for $\boldsymbol{\lambda} = \begin{bmatrix} 0 & 0.03848 & 0 & 0 \end{bmatrix} ^T$.
 
 \end{document}
