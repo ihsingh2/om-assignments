@@ -43,12 +43,13 @@ def projected_gd(
         bound = t * (np.linalg.norm((x - x_p) / t) ** 2)
         return abs(dec - bound) < 1e-3
 
-    eps = 1e-2
+    # eps = 1e-2
     s = 1
     beta = 0.75
 
     x_k = point
 
+    # while True:
     for k in range(1000):
         t_k = s
         while not sufficient_decrement(x_k, t_k):
@@ -56,8 +57,8 @@ def projected_gd(
 
         x_new = P_c(x_k - t_k * d_f(x_k))
 
-        if np.linalg.norm(x_new - x_k) <= eps:
-            break
+        # if np.linalg.norm(x_new - x_k) <= eps:
+        #     break
         x_k = x_new
 
     return x_k
