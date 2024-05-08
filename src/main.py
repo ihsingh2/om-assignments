@@ -46,7 +46,8 @@ def main():
     DA_table = PrettyTable()
     DA_table.field_names = [
         "Test case",
-        "Dual ascent",
+        "Dual ascent: x_k",
+        "Dual ascent: lambda"
     ]
     dividers = [4]
 
@@ -59,20 +60,20 @@ def main():
             ans = dual_ascent(
                 test_case[0], test_case[1], test_case[2], test_case[3], test_case[4]
             )
-            if type(ans) != np.ndarray:
+            if type(ans) != tuple or len(ans) != 2:
                 print(
                     f"Wrong type of value returned in dual ascent"
                 )
                 print(
-                    f"Test function was {test_case[0].__name__} with {test_case[2]} as starting point"
+                    f"Test function was {test_case[0].__name__} with {test_case[4]} as starting point"
                 )
                 row += [None]
             else:
-                row += [np.round(ans, 3)]
+                row += [np.round(ans[0], 3), np.round(ans[1], 3)]
         except Exception as e:
             print(f"Error in dual ascent")
             print(
-                f"Test function was {test_case[0].__name__} with {test_case[2]} as starting point"
+                f"Test function was {test_case[0].__name__} with {test_case[4]} as starting point"
             )
             print(e)
             row += [None]

@@ -36,29 +36,35 @@ def projected_gd(
 
     def sufficient_decrement(
         x: npt.NDArray[np.float64],
-        t: np.float64
+        t: np.float64,
+        alpha: np.float64 = 0.001
     ) -> bool:
+
         x_p = P_c(x - t * d_f(x))
         dec = f(x) - f(x_p)
-        bound = t * (np.linalg.norm((x - x_p) / t) ** 2)
-        return abs(dec - bound) < 1e-3
+        bound = alpha * t * (np.linalg.norm((x - x_p) / t) ** 2)
+        return bound <= dec
+    
+    def line_search(
+        x: npt.NDArray[np.float64],
+        s: np.float64 = 1,
+        beta: np.float64 = 0.9
+    ) -> npt.NDArray[np.float64]:
 
-    # eps = 1e-2
-    s = 1
-    beta = 0.75
-
-    x_k = point
-
-    # while True:
-    for k in range(1000):
         t_k = s
         while not sufficient_decrement(x_k, t_k):
             t_k *= beta
+        return t_k
 
+    eps = 1e-6
+    x_k = point
+
+    while True:
+        t_k = line_search(x_k)
         x_new = P_c(x_k - t_k * d_f(x_k))
 
-        # if np.linalg.norm(x_new - x_k) <= eps:
-        #     break
+        if np.linalg.norm(x_new - x_k) <= eps:
+            break
         x_k = x_new
 
     return x_k
@@ -89,15 +95,15 @@ def dual_ascent(
             grad[idx] = c_idx(x_k)
         return grad
 
-    alpha = 5e-2
+    alpha = 1e-3
     zeros = np.zeros(len(c))
 
     x_k = initial_point
     lambda_k = np.ones(len(c))
 
-    for k in range(10000):
+    for k in range(100000):
         x_k = x_k - alpha * grad_x(x_k, lambda_k)
         lambda_k = lambda_k + alpha * grad_lambda(x_k, lambda_k)
         lambda_k = np.maximum(lambda_k, zeros)
 
-    return x_k
+    return x_k, lambda_k
