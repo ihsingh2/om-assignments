@@ -10,7 +10,7 @@ Implementation of Projection Gradient Descent and Dual Ascent algorithm.
 \textbf{x}_{k + 1} = P_c(\textbf{x}_{k} - t_k \nabla f(\textbf{x}_k))
 ```
 
-### 2. Quasi-Newton Methods
+### 2. Dual Ascent Method
 
 ```math
 \textbf{x}_{k + 1} = \textbf{x}_{k} - \alpha \nabla_x \mathcal{L}(\textbf{x}_k, \lambda_k)
